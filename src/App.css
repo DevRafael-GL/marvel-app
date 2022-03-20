@@ -1,0 +1,27 @@
+:root {
+  --primary-red: #f2264b;
+  --primary-dark: #313140;
+  --primary-grey: #b7b7c8;
+  --primary-silver: #f8f8f8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+body {
+  background: #181b20;
+}
+
+.subTitle {
+  padding-bottom: 2rem;
+  color: var(--primary-silver);
+}
+
+.marvelLeft {
+  position: absolute;
+  z-index: -1;
+}

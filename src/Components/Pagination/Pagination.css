@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+}
+
+.pagination button {
+  background: var(--primary-silver);
+  margin: 2rem 0;
+  padding: 0.2rem 0.8rem;
+  border: none;
+}
+
+.pagination li + li {
+  margin-left: 1rem;
+}
+
+.btn.active {
+  font-weight: bold;
+  color: var(--primary-silver);
+  background: transparent;
+  border: none;
+}
+
+.pagination__item--active:focus {
+  outline: none;
+}

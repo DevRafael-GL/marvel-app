@@ -1,0 +1,55 @@
+.container {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  max-height: 700px;
+  overflow: hidden;
+}
+
+.container.active {
+  max-height: auto;
+  overflow: visible;
+}
+
+.card {
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  padding-bottom: 2rem;
+  overflow: hidden;
+  background: var(--primary-dark);
+  border-bottom-right-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
+
+.card p {
+  padding: 1rem 0.5rem;
+  text-align: center;
+  color: var(--primary-silver);
+}
+
+.img {
+  width: 100%;
+  margin-top: 0.5rem;
+  max-height: 200px;
+  object-fit: cover;
+}
+
+.loadingMore {
+  cursor: pointer;
+  width: 100%;
+  height: 4rem;
+  border: none;
+  color: azure;
+  background: #181b20;
+  position: absolute;
+  bottom: 0;
+  font-size: 0.9rem;
+}
