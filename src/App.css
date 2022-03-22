@@ -14,6 +14,7 @@
 
 body {
   background: #181b20;
+  color: var(--primary-silver);
 }
 
 .subTitle {
@@ -21,7 +22,6 @@ body {
   color: var(--primary-silver);
 }
 
-.marvelLeft {
-  position: absolute;
-  z-index: -1;
+a {
+  text-decoration: none;
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./LandingPage.css";
 import Spider from "../../Assets/spider-man.png";
 import Video from "../../Assets/video/JUDGMENT DAY Teaser Trailer _ Marvel Comics.mp4";
+import { Header } from "../Header/Header";
 
 export const LandingPage = () => {
   return (
@@ -13,17 +14,7 @@ export const LandingPage = () => {
           </video>
         </div>
       </div>
-      <header className="header">
-        <div>
-          <h2 className="logo">MARVEL</h2>
-        </div>
-        <div className="links">
-          <h3>CHARACTERS</h3>
-          <h3>COMICS</h3>
-          <h3>STORIES</h3>
-          <h3>EVENTS</h3>
-        </div>
-      </header>
+      <Header />
       <main className="landing">
         <div className="landingLeft">
           <h1>MARVEL</h1>

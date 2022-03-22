@@ -6,13 +6,19 @@
   flex: 1;
   align-items: center;
   justify-content: center;
-  max-height: 700px;
-  overflow: hidden;
+  /* max-height: 700px;
+  overflow: hidden; */
 }
 
-.container.active {
+/* .container.active {
   max-height: auto;
   overflow: visible;
+} */
+
+.marvelLeft {
+  position: absolute;
+  left: 0;
+  z-index: -9999;
 }
 
 .card {
@@ -35,7 +41,7 @@
   color: var(--primary-silver);
 }
 
-.img {
+.imgCharacters {
   width: 100%;
   margin-top: 0.5rem;
   max-height: 200px;

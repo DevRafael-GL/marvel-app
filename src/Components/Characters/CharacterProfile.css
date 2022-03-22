@@ -1,0 +1,41 @@
+.profile {
+  max-width: 1300px;
+  margin: 2rem auto 0;
+  display: flex;
+  gap: 4rem;
+  background: var(--primary-grey);
+  padding: 0.4rem;
+}
+
+.contentProfile {
+  width: 100%;
+  display: flex;
+  border: 2px solid var(--primary-dark);
+  border-radius: 4px;
+}
+
+.imgProfile {
+  max-width: 300px;
+  padding: 0.3rem;
+  border-right: 2px solid var(--primary-dark);
+}
+
+.profile p {
+  /* width: 60%; */
+  margin: 0 4rem;
+  font-size: 1.2rem;
+}
+
+.description {
+  padding: 1rem 2rem 0;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  color: var(--primary-dark);
+}
+
+.description h1 {
+  font-size: 2rem;
+  margin: 0 4rem;
+  margin-bottom: 1rem;
+}

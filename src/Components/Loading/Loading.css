@@ -1,0 +1,36 @@
+.loadingContainer {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadingContainer div {
+  width: 100%;
+}
+
+.loading {
+  height: 2px;
+  background: black;
+  overflow: hidden;
+  max-width: 25%;
+  margin: 2rem auto;
+}
+
+.loading::after {
+  content: "";
+  display: flex;
+  width: 75%;
+  height: 2px;
+  background: white;
+  animation: loading 0.8s linear forwards infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(120%);
+  }
+}

@@ -3,18 +3,21 @@
   align-items: center;
   justify-content: center;
   list-style: none;
+  gap: 1rem;
 }
 
 .pagination button {
+  cursor: pointer;
+  text-decoration: none;
   background: var(--primary-silver);
   margin: 2rem 0;
   padding: 0.2rem 0.8rem;
   border: none;
 }
 
-.pagination li + li {
+/* .pagination li + li {
   margin-left: 1rem;
-}
+} */
 
 .btn.active {
   font-weight: bold;
