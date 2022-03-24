@@ -1,12 +1,12 @@
 import React from "react";
+import { CharactersContent } from "../Characters/CharactersContent";
 import { LandingPage } from "../LandingPage/LandingPage";
-import { Main } from "../Main/Main";
 
 export const Home = () => {
   return (
     <>
       <LandingPage />
-      <Main />
+      <CharactersContent />
     </>
   );
 };

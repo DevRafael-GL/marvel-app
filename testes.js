@@ -1,37 +1,27 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { CHARACTER_PROFILE_GET } from "../../Api/api";
+import { CHARACTER_PROFILE_GET, CHARACTER_STORIES_GET } from "../../Api/api";
 import { useFetch } from "../../Hooks/useFetch";
 import { Header } from "../Header/Header";
 import "./CharacterProfile.css";
 
 export const CharacterProfile = () => {
-  const ts = "1647634571";
-  const hash = process.env.REACT_APP_API_HASH;
-  const apikey = process.env.REACT_APP_API_KEY;
-  const key = `?ts=${ts}&apikey=${apikey}&hash=${hash}`;
-
   const { id } = useParams();
 
   const { data, loading, error, request } = useFetch();
-
-  const [comicData, setComicData] = React.useState([]);
 
   React.useEffect(() => {
     const { url } = CHARACTER_PROFILE_GET(id);
     request(url);
   }, [request, id]);
 
-  const character = data?.data.results[0];
-  const urlComic = `http://gateway.marvel.com/v1/public/characters/${id}/stories`;
-
   React.useEffect(() => {
-    fetch(`${urlComic}${key}`)
-      .then((response) => response.json())
-      .then((json) => setComicData(json));
-  }, [character, key, urlComic]);
+    const { url } = CHARACTER_STORIES_GET(id);
+    request(url);
+  }, [request, id]);
 
-  console.log(comicData);
+  const character = data?.data.results[0];
+  console.log(character);
 
   if (data)
     return (
@@ -59,7 +49,11 @@ export const CharacterProfile = () => {
         </section>
         <section>
           <h2>Stories</h2>
-          <ul></ul>
+          <ul>
+            {character.stories.items.map((storie) => (
+              <li>{storie.name}</li>
+            ))}
+          </ul>
         </section>
       </>
     );

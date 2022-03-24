@@ -17,6 +17,16 @@ body {
   color: var(--primary-silver);
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh + 10rem);
+}
+
+.AppBody {
+  flex: 1;
+}
+
 .subTitle {
   padding-bottom: 2rem;
   color: var(--primary-silver);
@@ -24,4 +34,9 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.results {
+  padding-bottom: 2rem;
+  color: var(--primary-grey);
 }

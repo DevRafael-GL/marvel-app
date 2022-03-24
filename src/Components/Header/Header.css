@@ -20,3 +20,9 @@
   display: flex;
   gap: 2rem;
 }
+
+.links a {
+  color: var(--primary-silver);
+  font-size: 1.2rem;
+  font-weight: bold;
+}

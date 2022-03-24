@@ -20,3 +20,9 @@ export function CHARACTER_PROFILE_GET(id) {
     url: `${url}characters?id=${id}&ts=${ts}&apikey=${apikey}&hash=${hash}`,
   };
 }
+
+export function CHARACTER_COMICS_GET(params) {
+  return {
+    url: `${url}comics?orderBy=-modified&${params}ts=${ts}&apikey=${apikey}&hash=${hash}`,
+  };
+}

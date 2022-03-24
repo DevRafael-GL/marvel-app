@@ -5,6 +5,15 @@ import Video from "../../Assets/video/JUDGMENT DAY Teaser Trailer _ Marvel Comic
 import { Header } from "../Header/Header";
 
 export const LandingPage = () => {
+  function scrollToCharacters(page) {
+    const main = document.querySelector("#main").offsetTop - 40;
+
+    window.scroll({
+      top: main,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <section className="landingPage">
       <div className="backcground">
@@ -28,7 +37,7 @@ export const LandingPage = () => {
             mollitia, sequi alias!
           </p>
 
-          <button>CHARACTERS</button>
+          <button onClick={scrollToCharacters}>CHARACTERS</button>
         </div>
         <div className="landingRight">
           <img src={Spider} alt="" />

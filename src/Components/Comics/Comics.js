@@ -1,14 +1,14 @@
 import React from "react";
 import { Header } from "../Header/Header";
 import { Masthead } from "../Header/Masthead";
-import { CharactersContent } from "./CharactersContent";
+import { ComicsContent } from "./ComicsContent";
 
-export const Characters = () => {
+export const Comics = () => {
   return (
     <>
       <Header />
       <Masthead />
-      <CharactersContent />
+      <ComicsContent />
     </>
   );
 };

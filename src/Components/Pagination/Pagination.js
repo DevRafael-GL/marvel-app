@@ -1,7 +1,7 @@
 import React from "react";
 import "./Pagination.css";
 
-export const Pagination = ({ limit, total, offset, setOffset }) => {
+export const Pagination = ({ limit, total, offset, setOffset, count }) => {
   const MAX_ITEMS = 7;
   const MAX_LEFT = (MAX_ITEMS - 1) / 2;
 
@@ -24,17 +24,18 @@ export const Pagination = ({ limit, total, offset, setOffset }) => {
   return (
     <div className="paginationContainer">
       <ul className={"pagination"}>
-        <li>
-          <button
-            onClick={() => {
-              onPageChange(current - 1);
-            }}
-            disabled={current === 1}
-          >
-            Prev
-          </button>
-        </li>
-
+        {count >= 1 && (
+          <li>
+            <button
+              onClick={() => {
+                onPageChange(current - 1);
+              }}
+              disabled={current === 1}
+            >
+              Prev
+            </button>
+          </li>
+        )}
         {first > 1 && (
           <>
             <li>
@@ -80,16 +81,18 @@ export const Pagination = ({ limit, total, offset, setOffset }) => {
           </>
         )}
 
-        <li>
-          <button
-            onClick={() => {
-              onPageChange(current + 1);
-            }}
-            disabled={current === totalPages}
-          >
-            Next
-          </button>
-        </li>
+        {count >= 1 && (
+          <li>
+            <button
+              onClick={() => {
+                onPageChange(current + 1);
+              }}
+              disabled={current === totalPages}
+            >
+              Next
+            </button>
+          </li>
+        )}
       </ul>
     </div>
   );

@@ -1,0 +1,28 @@
+.sectionContainer {
+}
+
+.mainContent {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.comicsContent {
+  /* background: red; */
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.comicsContent li {
+  width: 200px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.comicsContent img {
+  width: 100%;
+}

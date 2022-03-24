@@ -1,41 +1,42 @@
-.profile {
-  max-width: 1300px;
+/* .profile {
   margin: 2rem auto 0;
+  max-height: 300px;
   display: flex;
   gap: 4rem;
-  background: var(--primary-grey);
-  padding: 0.4rem;
+  background: var(--primary-dark);
 }
 
 .contentProfile {
-  width: 100%;
+  width: 1250px;
+  margin: 0 auto;
   display: flex;
-  border: 2px solid var(--primary-dark);
+  justify-content: initial;
+  border: 2px solid var(--primary-silver);
   border-radius: 4px;
 }
 
 .imgProfile {
   max-width: 300px;
-  padding: 0.3rem;
-  border-right: 2px solid var(--primary-dark);
+  object-fit: contain;
 }
 
 .profile p {
-  /* width: 60%; */
+  width: 60%;
   margin: 0 4rem;
   font-size: 1.2rem;
 }
 
 .description {
+  flex: 1;
   padding: 1rem 2rem 0;
   display: flex;
   flex-direction: column;
   text-align: justify;
-  color: var(--primary-dark);
+  color: var(--primary-silver);
 }
 
 .description h1 {
   font-size: 2rem;
   margin: 0 4rem;
   margin-bottom: 1rem;
-}
+} */
