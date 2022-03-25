@@ -19,6 +19,8 @@
   display: flex;
   gap: 4rem;
   background: var(--primary-dark);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .close {
@@ -57,7 +59,6 @@
   flex-direction: column;
   text-align: justify;
   color: var(--primary-silver);
-  overflow: auto;
 }
 
 .description h1 {
@@ -98,5 +99,15 @@
     border-top: none;
     border-right: none;
     background: white;
+  }
+
+  .profile p {
+    margin: 0;
+    padding-bottom: 2rem;
+  }
+
+  .profile h1 {
+    margin: 0;
+    padding-bottom: 2rem;
   }
 }
