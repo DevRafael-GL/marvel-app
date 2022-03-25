@@ -1,15 +1,18 @@
 import React from "react";
-import { CHARACTERS_GET } from "../../Api/api";
-import { Pagination } from "../Pagination/Pagination";
-import { Loading } from "../Loading/Loading";
-import "./Characters.css";
 import { useFetch } from "../../Hooks/useFetch";
+import { Loading } from "../Loading/Loading";
+import { Pagination } from "../Pagination/Pagination";
 import { Search } from "../Search/Search";
-import Marvel from "../../Assets/Marvel.svg";
 import { ModalProfile } from "../Helper/ModalProfile";
+import { EVENTS_GET } from "../../Api/api";
+import "./Events.css";
 
-export const CharactersContent = () => {
+export const EventContent = () => {
   const { data, loading, error, request } = useFetch();
+  const [offset, setOffset] = React.useState(0);
+  const [search, setSearch] = React.useState(null);
+
+  const [modalProfile, setModalProfile] = React.useState(null);
 
   const API_KEY = {
     ts: "1647634571",
@@ -18,39 +21,36 @@ export const CharactersContent = () => {
   };
   const key = `?ts=${API_KEY.ts}&apikey=${API_KEY.apikey}&hash=${API_KEY.hash}`;
 
-  const [offset, setOffset] = React.useState(0);
-  const [search, setSearch] = React.useState(null);
-  const [modalProfile, setModalProfile] = React.useState(null);
-
   const LIMIT = 36;
   const TOTAL = data?.data.total;
   const COUNT = data?.data.count;
-  const nameStartsWith = `nameStartsWith=${search}&`;
+  const titleStartsWith = `titleStartsWith=${search}&`;
 
   React.useEffect(() => {
-    const { url, options } = CHARACTERS_GET(
-      `${search ? nameStartsWith : ""}limit=${LIMIT}&offset=${offset}&`
+    const { url, options } = EVENTS_GET(
+      `${search ? titleStartsWith : ""}limit=${LIMIT}&offset=${offset}&`
     );
     request(url, options);
-  }, [request, offset, nameStartsWith, search]);
+  }, [offset, request, search, titleStartsWith]);
+
+  console.log(data);
+
+  const events = data?.data.results;
 
   // MODAL PROFILE
 
   function handleClickProfile(event) {
-    const idCharacter = event.currentTarget.id;
-    const urlComic = `http://gateway.marvel.com/v1/public/characters/${
-      idCharacter && idCharacter
+    const idEvents = event.currentTarget.id;
+    const urlEvents = `http://gateway.marvel.com/v1/public/events/${
+      idEvents && idEvents
     }`;
     if (!modalProfile) {
-      fetch(`${urlComic}${key}`)
+      fetch(`${urlEvents}${key}`)
         .then((response) => response.json())
         .then((json) => setModalProfile(json));
     }
+    console.log(idEvents);
   }
-
-  // END MODAL PROFILE
-
-  const characters = data?.data.results;
 
   if (loading) return <Loading />;
   if (data)
@@ -60,8 +60,8 @@ export const CharactersContent = () => {
           modalProfile={modalProfile}
           setModalProfile={setModalProfile}
         />
-        <div id="main" className="mainCharactersContent">
-          <h2 className="subTitle">Marvel Comics</h2>
+        <div id="main" className="mainEventsContent">
+          <h2 className="subTitle">Marvel Events</h2>
           <Search setSearch={setSearch} search={search} setOffset={setOffset} />
 
           <p className="results">{`${data?.data.total} Results`}</p>
@@ -72,18 +72,14 @@ export const CharactersContent = () => {
             </h1>
           )}
 
-          <ul className="charactersContent">
-            {characters.map((character) => (
-              <li
-                key={character.id}
-                id={character.id}
-                onClick={handleClickProfile}
-              >
+          <ul className="eventsContent">
+            {events.map((event) => (
+              <li key={event.id} id={event.id} onClick={handleClickProfile}>
                 <img
-                  src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                  alt={character.name}
+                  src={`${event.thumbnail.path}.${event.thumbnail.extension}`}
+                  alt={event.title}
                 />
-                <p>{character.name}</p>
+                <p>{event.title}</p>
               </li>
             ))}
           </ul>

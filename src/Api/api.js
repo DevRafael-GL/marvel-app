@@ -26,3 +26,9 @@ export function CHARACTER_COMICS_GET(params) {
     url: `${url}comics?orderBy=-modified&${params}ts=${ts}&apikey=${apikey}&hash=${hash}`,
   };
 }
+
+export function EVENTS_GET(params) {
+  return {
+    url: `${url}events?orderBy=-modified&${params}ts=${ts}&apikey=${apikey}&hash=${hash}`,
+  };
+}

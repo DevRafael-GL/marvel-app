@@ -101,3 +101,27 @@ video {
   width: 130%;
   transform: translateX(-60px);
 }
+
+@media (max-width: 900px) {
+  .landing {
+    flex-direction: column;
+  }
+
+  video {
+    height: 100vh;
+  }
+
+  .landingLeft {
+    width: 100%;
+    text-align: justify;
+    padding: 0;
+  }
+
+  .landingLeft h1 {
+    font-size: 3.5rem;
+  }
+
+  .landingRight {
+    display: none;
+  }
+}

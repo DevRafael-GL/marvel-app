@@ -24,18 +24,16 @@ export const Pagination = ({ limit, total, offset, setOffset, count }) => {
   return (
     <div className="paginationContainer">
       <ul className={"pagination"}>
-        {count >= 1 && (
-          <li>
-            <button
-              onClick={() => {
-                onPageChange(current - 1);
-              }}
-              disabled={current === 1}
-            >
-              Prev
-            </button>
-          </li>
-        )}
+        <li>
+          <button
+            onClick={() => {
+              onPageChange(current - 1);
+            }}
+            disabled={current === 1}
+          >
+            Prev
+          </button>
+        </li>
         {first > 1 && (
           <>
             <li>
@@ -81,18 +79,16 @@ export const Pagination = ({ limit, total, offset, setOffset, count }) => {
           </>
         )}
 
-        {count >= 1 && (
-          <li>
-            <button
-              onClick={() => {
-                onPageChange(current + 1);
-              }}
-              disabled={current === totalPages}
-            >
-              Next
-            </button>
-          </li>
-        )}
+        <li>
+          <button
+            onClick={() => {
+              onPageChange(current + 1);
+            }}
+            disabled={current === totalPages}
+          >
+            Next
+          </button>
+        </li>
       </ul>
     </div>
   );
