@@ -87,14 +87,14 @@ export const CharactersContent = () => {
               </li>
             ))}
           </ul>
-          {
+          {/* {
             <Pagination
               limit={LIMIT}
               total={TOTAL}
               offset={offset}
               setOffset={setOffset}
             />
-          }
+          } */}
         </div>
       </section>
     );

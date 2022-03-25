@@ -2,7 +2,12 @@ import React from "react";
 import "./Pagination.css";
 
 export const Pagination = ({ limit, total, offset, setOffset, count }) => {
-  const MAX_ITEMS = 7;
+  const width = window.screen.width;
+
+  let MAX_ITEMS = 7;
+  if (width < 600) {
+    MAX_ITEMS = 3;
+  }
   const MAX_LEFT = (MAX_ITEMS - 1) / 2;
 
   const current = offset ? offset / limit + 1 : 1;
@@ -21,20 +26,24 @@ export const Pagination = ({ limit, total, offset, setOffset, count }) => {
     });
   }
 
+  console.log(width);
+
   return (
     <div className="paginationContainer">
       <ul className={"pagination"}>
-        <li>
-          <button
-            onClick={() => {
-              onPageChange(current - 1);
-            }}
-            disabled={current === 1}
-          >
-            Prev
-          </button>
-        </li>
-        {first > 1 && (
+        {width > 600 && (
+          <li>
+            <button
+              onClick={() => {
+                onPageChange(current - 1);
+              }}
+              disabled={current === 1}
+            >
+              Prev
+            </button>
+          </li>
+        )}
+        {first > 1 && width > 600 && (
           <>
             <li>
               <button
@@ -64,7 +73,7 @@ export const Pagination = ({ limit, total, offset, setOffset, count }) => {
             </li>
           ))}
 
-        {current !== totalPages && last < totalPages && (
+        {current !== totalPages && last < totalPages && width > 600 && (
           <>
             <span style={{ color: "var(--primary-silver)" }}>...</span>
             <li>
@@ -79,17 +88,68 @@ export const Pagination = ({ limit, total, offset, setOffset, count }) => {
           </>
         )}
 
-        <li>
-          <button
-            onClick={() => {
-              onPageChange(current + 1);
-            }}
-            disabled={current === totalPages}
-          >
-            Next
-          </button>
-        </li>
+        {width > 600 && (
+          <li>
+            <button
+              onClick={() => {
+                onPageChange(current + 1);
+              }}
+              disabled={current === totalPages}
+            >
+              Next
+            </button>
+          </li>
+        )}
       </ul>
+
+      {/* MOBILE */}
+
+      {width < 600 && (
+        <div className="prevNextMobile">
+          <>
+            <li>
+              <button
+                onClick={() => {
+                  onPageChange(1);
+                }}
+              >
+                First
+              </button>
+            </li>
+          </>
+          <li>
+            <button
+              onClick={() => {
+                onPageChange(current - 1);
+              }}
+              disabled={current === 1}
+            >
+              Prev
+            </button>
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                onPageChange(current + 1);
+              }}
+              disabled={current === totalPages}
+            >
+              Next
+            </button>
+          </li>
+          <>
+            <li>
+              <button
+                onClick={() => {
+                  onPageChange(totalPages);
+                }}
+              >
+                Last
+              </button>
+            </li>
+          </>
+        </div>
+      )}
     </div>
   );
 };
