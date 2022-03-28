@@ -6,7 +6,6 @@ import { EventContent } from "./EventsContent";
 export const Events = () => {
   return (
     <>
-      <Header />
       <Masthead />
       <EventContent />
     </>

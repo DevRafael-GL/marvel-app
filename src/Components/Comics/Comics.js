@@ -6,7 +6,6 @@ import { ComicsContent } from "./ComicsContent";
 export const Comics = () => {
   return (
     <>
-      <Header />
       <Masthead />
       <ComicsContent />
     </>

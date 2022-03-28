@@ -6,7 +6,6 @@ import { CharactersContent } from "./CharactersContent";
 export const Characters = () => {
   return (
     <>
-      <Header />
       <Masthead />
       <CharactersContent />
     </>
