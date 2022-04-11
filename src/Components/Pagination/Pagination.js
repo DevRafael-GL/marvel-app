@@ -26,8 +26,6 @@ export const Pagination = ({ limit, total, offset, setOffset, count }) => {
     });
   }
 
-  console.log(width);
-
   return (
     <div className="paginationContainer">
       <ul className={"pagination"}>

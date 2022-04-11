@@ -5,7 +5,6 @@ import { Loading } from "../Loading/Loading";
 import "./Characters.css";
 import { useFetch } from "../../Hooks/useFetch";
 import { Search } from "../Search/Search";
-import Marvel from "../../Assets/Marvel.svg";
 import { ModalProfile } from "../Helper/ModalProfile";
 
 export const CharactersContent = () => {
