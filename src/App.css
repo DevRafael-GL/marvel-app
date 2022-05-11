@@ -23,6 +23,10 @@ body {
   min-height: calc(100vh + 10rem);
 }
 
+.sectionContainer {
+  background: url("./Assets/Marvel.svg") no-repeat;
+}
+
 .AppBody {
   flex: 1;
 }

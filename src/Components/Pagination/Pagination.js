@@ -17,7 +17,6 @@ export const Pagination = ({ limit, total, offset, setOffset, count }) => {
 
   function onPageChange(page) {
     const main = document.querySelector("#main").offsetTop - 40;
-    console.log(main);
     setOffset((page - 1) * limit);
 
     window.scroll({

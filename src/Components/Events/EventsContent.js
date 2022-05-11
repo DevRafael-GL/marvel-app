@@ -6,6 +6,7 @@ import { Search } from "../Search/Search";
 import { ModalProfile } from "../Helper/ModalProfile";
 import { EVENTS_GET } from "../../Api/api";
 import "./Events.css";
+import { TopButton } from "../Helper/TopButton";
 
 export const EventContent = () => {
   const { data, loading, error, request } = useFetch();
@@ -21,7 +22,7 @@ export const EventContent = () => {
   };
   const key = `?ts=${API_KEY.ts}&apikey=${API_KEY.apikey}&hash=${API_KEY.hash}`;
 
-  const LIMIT = 36;
+  const LIMIT = 20;
   const TOTAL = data?.data.total;
   const COUNT = data?.data.count;
   const titleStartsWith = `titleStartsWith=${search}&`;
@@ -32,8 +33,6 @@ export const EventContent = () => {
     );
     request(url, options);
   }, [offset, request, search, titleStartsWith]);
-
-  console.log(data);
 
   const events = data?.data.results;
 
@@ -49,7 +48,6 @@ export const EventContent = () => {
         .then((response) => response.json())
         .then((json) => setModalProfile(json));
     }
-    console.log(idEvents);
   }
 
   if (loading) return <Loading />;
@@ -91,6 +89,8 @@ export const EventContent = () => {
               setOffset={setOffset}
             />
           }
+
+          <TopButton />
         </div>
       </section>
     );

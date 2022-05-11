@@ -6,6 +6,8 @@ import { Pagination } from "../Pagination/Pagination";
 import "./Comics.css";
 import { Search } from "../Search/Search";
 import { ModalProfile } from "../Helper/ModalProfile";
+import { MainHeader } from "../Helper/MainHeader";
+import { TopButton } from "../Helper/TopButton";
 
 export const ComicsContent = () => {
   const { data, loading, error, request } = useFetch();
@@ -21,7 +23,7 @@ export const ComicsContent = () => {
   };
   const key = `?ts=${API_KEY.ts}&apikey=${API_KEY.apikey}&hash=${API_KEY.hash}`;
 
-  const LIMIT = 36;
+  const LIMIT = 20;
   const TOTAL = data?.data.total;
   const COUNT = data?.data.count;
   const titleStartsWith = `titleStartsWith=${search}&`;
@@ -32,8 +34,6 @@ export const ComicsContent = () => {
     );
     request(url, options);
   }, [offset, request, search, titleStartsWith]);
-
-  console.log(data);
 
   const comics = data?.data.results;
 
@@ -49,7 +49,6 @@ export const ComicsContent = () => {
         .then((response) => response.json())
         .then((json) => setModalProfile(json));
     }
-    console.log(idComics);
   }
 
   if (loading) return <Loading />;
@@ -61,17 +60,13 @@ export const ComicsContent = () => {
           setModalProfile={setModalProfile}
         />
         <div id="main" className="mainComicsContent">
-          <h2 className="subTitle">Marvel Comics</h2>
-          <Search setSearch={setSearch} search={search} setOffset={setOffset} />
-
-          <p className="results">{`${data?.data.total} Results`}</p>
-
-          {COUNT === 0 && (
-            <h1 style={{ color: "var(--primary-grey)" }}>
-              Personagem não encontrado!
-            </h1>
-          )}
-
+          <MainHeader
+            search={search}
+            setSearch={setSearch}
+            data={data}
+            setOffset={setOffset}
+            count={COUNT}
+          />
           <ul className="comicsContent">
             {comics.map((comic) => (
               <li key={comic.id} id={comic.id} onClick={handleClickProfile}>
@@ -91,6 +86,8 @@ export const ComicsContent = () => {
               setOffset={setOffset}
             />
           }
+
+          <TopButton />
         </div>
       </section>
     );

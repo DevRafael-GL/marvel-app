@@ -6,6 +6,8 @@ import "./Characters.css";
 import { useFetch } from "../../Hooks/useFetch";
 import { Search } from "../Search/Search";
 import { ModalProfile } from "../Helper/ModalProfile";
+import { MainHeader } from "../Helper/MainHeader";
+import { TopButton } from "../Helper/TopButton";
 
 export const CharactersContent = () => {
   const { data, loading, error, request } = useFetch();
@@ -21,7 +23,7 @@ export const CharactersContent = () => {
   const [search, setSearch] = React.useState(null);
   const [modalProfile, setModalProfile] = React.useState(null);
 
-  const LIMIT = 36;
+  const LIMIT = 20;
   const TOTAL = data?.data.total;
   const COUNT = data?.data.count;
   const nameStartsWith = `nameStartsWith=${search}&`;
@@ -60,16 +62,13 @@ export const CharactersContent = () => {
           setModalProfile={setModalProfile}
         />
         <div id="main" className="mainCharactersContent">
-          <h2 className="subTitle">Marvel Comics</h2>
-          <Search setSearch={setSearch} search={search} setOffset={setOffset} />
-
-          <p className="results">{`${data?.data.total} Results`}</p>
-
-          {COUNT === 0 && (
-            <h1 style={{ color: "var(--primary-grey)" }}>
-              Personagem não encontrado!
-            </h1>
-          )}
+          <MainHeader
+            search={search}
+            setSearch={setSearch}
+            data={data}
+            setOffset={setOffset}
+            count={COUNT}
+          />
 
           <ul className="charactersContent">
             {characters.map((character) => (
@@ -94,6 +93,8 @@ export const CharactersContent = () => {
               setOffset={setOffset}
             />
           }
+
+          <TopButton />
         </div>
       </section>
     );
