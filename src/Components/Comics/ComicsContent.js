@@ -86,8 +86,6 @@ export const ComicsContent = () => {
               setOffset={setOffset}
             />
           }
-
-          <TopButton />
         </div>
       </section>
     );

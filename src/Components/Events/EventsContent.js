@@ -9,7 +9,7 @@ import "./Events.css";
 import { TopButton } from "../Helper/TopButton";
 
 export const EventContent = () => {
-  const { data, loading, error, request } = useFetch();
+  const { data, loading, request } = useFetch();
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState(null);
 
@@ -89,8 +89,6 @@ export const EventContent = () => {
               setOffset={setOffset}
             />
           }
-
-          <TopButton />
         </div>
       </section>
     );

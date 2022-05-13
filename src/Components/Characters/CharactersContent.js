@@ -4,13 +4,11 @@ import { Pagination } from "../Pagination/Pagination";
 import { Loading } from "../Loading/Loading";
 import "./Characters.css";
 import { useFetch } from "../../Hooks/useFetch";
-import { Search } from "../Search/Search";
-import { ModalProfile } from "../ModalProfile/ModalProfileComics";
+import { ModalProfileComics } from "../ModalProfile/ModalProfileComics";
 import { MainHeader } from "../Helper/MainHeader";
-import { TopButton } from "../Helper/TopButton";
 
 export const CharactersContent = () => {
-  const { data, loading, error, request } = useFetch();
+  const { data, loading, request } = useFetch();
 
   const API_KEY = {
     ts: "1647634571",
@@ -23,6 +21,7 @@ export const CharactersContent = () => {
   const [search, setSearch] = React.useState(null);
   const [modalProfile, setModalProfile] = React.useState(null);
   const [contentProfile, setContentProfile] = React.useState(null);
+  const [idCharacter, setIdCharacter] = React.useState(null);
 
   const LIMIT = 20;
   const TOTAL = data?.data.total;
@@ -39,23 +38,16 @@ export const CharactersContent = () => {
   // MODAL PROFILE
 
   function handleClickProfile(event) {
-    const idCharacter = event.currentTarget.id;
+    const idChar = event.currentTarget.id;
+    setIdCharacter(idChar);
+
     const urlCharacter = `http://gateway.marvel.com/v1/public/characters/${
-      idCharacter && idCharacter
+      idChar && idChar
     }`;
-    const urlComics = `http://gateway.marvel.com/v1/public/characters/${
-      idCharacter && idCharacter
-    }/comics`;
     if (!modalProfile) {
       fetch(`${urlCharacter}${key}`)
         .then((response) => response.json())
         .then((json) => setModalProfile(json));
-    }
-
-    if (!contentProfile) {
-      fetch(`${urlComics}${key}`)
-        .then((response) => response.json())
-        .then((json) => setContentProfile(json));
     }
   }
 
@@ -67,11 +59,13 @@ export const CharactersContent = () => {
   if (data)
     return (
       <section className="sectionContainer">
-        <ModalProfile
+        <ModalProfileComics
           modalProfile={modalProfile}
           setModalProfile={setModalProfile}
           contentProfile={contentProfile}
           setContentProfile={setContentProfile}
+          idCharacter={idCharacter}
+          setIdCharacter={setIdCharacter}
         />
         <div id="main" className="mainCharactersContent">
           <MainHeader
@@ -105,8 +99,6 @@ export const CharactersContent = () => {
               setOffset={setOffset}
             />
           }
-
-          <TopButton />
         </div>
       </section>
     );

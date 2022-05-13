@@ -1,21 +1,31 @@
 import React from "react";
+import { CHARACTER_COMICS_PROFILE_GET } from "../../Api/api";
+import { useFetch } from "../../Hooks/useFetch";
 import { Footer } from "../Footer/Footer";
+import { Loading } from "../Loading/Loading";
+import { Pagination } from "../Pagination/Pagination";
 import "./ModalProfile.css";
 
-export const ModalProfile = ({
+export const ModalProfileComics = ({
   modalProfile,
   setModalProfile,
   contentProfile,
   setContentProfile,
+  idCharacter,
+  setIdCharacter,
 }) => {
   const [modalComicsProfile, setModalComicsProfile] = React.useState(null);
+  const [offset, setOffset] = React.useState(0);
+
+  const { data, loading, request } = useFetch();
 
   const API_KEY = {
     ts: "1647634571",
     hash: process.env.REACT_APP_API_HASH,
     apikey: process.env.REACT_APP_API_KEY,
   };
-  const key = `?ts=${API_KEY.ts}&apikey=${API_KEY.apikey}&hash=${API_KEY.hash}`;
+
+  const key = `ts=${API_KEY.ts}&apikey=${API_KEY.apikey}&hash=${API_KEY.hash}`;
 
   const body = document.querySelector("body");
   if (modalProfile) {
@@ -24,10 +34,13 @@ export const ModalProfile = ({
     body.style = "";
   }
 
+
   function outsideClick(event) {
     if (event.target === event.currentTarget) {
       setModalProfile(null);
       setContentProfile(null);
+      setIdCharacter(null);
+      setOffset(0)
     }
   }
 
@@ -41,7 +54,7 @@ export const ModalProfile = ({
     const idComics = event.currentTarget.id;
     const urlComic = `http://gateway.marvel.com/v1/public/comics/${
       idComics && idComics
-    }`;
+    }?`;
     if (!modalComicsProfile) {
       fetch(`${urlComic}${key}`)
         .then((response) => response.json())
@@ -49,25 +62,40 @@ export const ModalProfile = ({
     }
   }
 
-  console.log(modalComicsProfile);
-  const comics = contentProfile?.data.results;
+  const LIMIT = 20;
+  const TOTAL = data?.data.total;
+
+  React.useEffect(() => {
+    if(idCharacter) {
+    const { url, options } = CHARACTER_COMICS_PROFILE_GET(
+      `/${
+            idCharacter && idCharacter
+          }/comics?limit=${LIMIT}&offset=${offset}`
+    );
+    request(url, options);
+  }
+  }, [request, offset, idCharacter ]);
+
+  const comics = data?.data.results;
   const comicsModal = modalComicsProfile?.data.results;
 
   return (
     <>
       {modalProfile && (
-        <div className="containerProfile" onClick={outsideClick}>
+        <div className="containerProfile" id="main" onClick={outsideClick}>
           <div className="profileCharacter">
             <span
               className="close"
               onClick={() => {
                 setModalProfile(null);
                 setContentProfile(null);
+                setIdCharacter(null);
+                setOffset(0)
               }}
             >
               X
             </span>
-            <div className="contentProfile">
+            <div className="contentProfile" >
               <div className="imgProfile">
                 <img
                   className="imgProfile"
@@ -92,12 +120,10 @@ export const ModalProfile = ({
                 </div>
               </div>
             </div>
-            <div className="mainProfile">
+            {loading ? <Loading/> : <div className="mainProfile" >
               <ul className="comicsContentProfile">
-                
-                {
+                {comics && comics.length > 0 ? (
                   comics &&
-                  comics.length > 0 ? comics &&
                   comics.map((comic) => (
                     <li
                       className="profileComics"
@@ -110,47 +136,56 @@ export const ModalProfile = ({
                         alt={comic.title}
                       />
                     </li>
-                  )) : <p>No comics</p>
-                }
+                  ))
+                ) : (
+                  <p>No comics</p>
+                )}
               </ul>
-            </div>
+            </div>}
+            
+            {!loading && <Pagination
+              limit={LIMIT}
+              total={TOTAL}
+              offset={offset}
+              setOffset={setOffset}
+            />}
+            
             <Footer />
           </div>
-        
 
-          {modalComicsProfile && <div className="containerComicsProfile" onClick={outsideClickComicsModal}>
-            <div className="modalComicsProfile">
-            <span
-              className="close"
-              onClick={() => {
-                setModalComicsProfile(null);
-              }}
+          {modalComicsProfile && (
+            <div
+              className="containerComicsProfile"
+              onClick={outsideClickComicsModal}
             >
-              X
-            </span>
-              <div className="imgComicsProfile">
-                <img
-                  className="imgProfile"
-                  src={`${comicsModal[0].thumbnail.path}.${comicsModal[0].thumbnail.extension}`}
-                  alt={comicsModal[0].name}
-                />
-              </div>
-
-              <div className="descriptionComics">
-                <h1>
-                  {comicsModal[0].name ||
-                    comicsModal[0].title}
-                </h1>
-                <p>
-                  {comicsModal[0].description
-                    ? comicsModal[0].description
-                    : "No description"}
-                </p>
+              <div className="modalComicsProfile">
+                <span
+                  className="close"
+                  onClick={() => {
+                    setModalComicsProfile(null);
+                  }}
+                >
+                  X
+                </span>
+                <div className="imgComicsProfile">
+                  <img
+                    className="imgProfile"
+                    src={`${comicsModal[0].thumbnail.path}.${comicsModal[0].thumbnail.extension}`}
+                    alt={comicsModal[0].name}
+                  />
                 </div>
-            </div>
-          </div>}
 
-          
+                <div className="descriptionComics">
+                  <h1>{comicsModal[0].name || comicsModal[0].title}</h1>
+                  <p>
+                    {comicsModal[0].description
+                      ? comicsModal[0].description
+                      : "No description"}
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </>

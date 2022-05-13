@@ -5,6 +5,7 @@ import { Comics } from "./Components/Comics/Comics";
 import { Characters } from "./Components/Characters/Characters";
 import { Footer } from "./Components/Footer/Footer";
 import { Events } from "./Components/Events/Events";
+import { TopButton } from "./Components/Helper/TopButton";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/events" element={<Events />} />
           </Routes>
         </main>
+        <TopButton />
         <Footer />
       </Router>
     </div>
