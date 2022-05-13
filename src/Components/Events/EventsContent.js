@@ -3,7 +3,7 @@ import { useFetch } from "../../Hooks/useFetch";
 import { Loading } from "../Loading/Loading";
 import { Pagination } from "../Pagination/Pagination";
 import { Search } from "../Search/Search";
-import { ModalProfile } from "../Helper/ModalProfile";
+import { ModalProfile } from "../ModalProfile/ModalProfile";
 import { EVENTS_GET } from "../../Api/api";
 import "./Events.css";
 import { TopButton } from "../Helper/TopButton";

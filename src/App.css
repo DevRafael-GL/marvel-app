@@ -44,3 +44,25 @@ a {
   padding-bottom: 2rem;
   color: var(--primary-grey);
 }
+
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #afafaf #181b20;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #181b20;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 20px;
+  border: 3px solid #181b20;
+}

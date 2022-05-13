@@ -5,7 +5,7 @@ import { Loading } from "../Loading/Loading";
 import "./Characters.css";
 import { useFetch } from "../../Hooks/useFetch";
 import { Search } from "../Search/Search";
-import { ModalProfile } from "../Helper/ModalProfile";
+import { ModalProfile } from "../ModalProfile/ModalProfileComics";
 import { MainHeader } from "../Helper/MainHeader";
 import { TopButton } from "../Helper/TopButton";
 
@@ -22,6 +22,7 @@ export const CharactersContent = () => {
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState(null);
   const [modalProfile, setModalProfile] = React.useState(null);
+  const [contentProfile, setContentProfile] = React.useState(null);
 
   const LIMIT = 20;
   const TOTAL = data?.data.total;
@@ -39,13 +40,22 @@ export const CharactersContent = () => {
 
   function handleClickProfile(event) {
     const idCharacter = event.currentTarget.id;
-    const urlComic = `http://gateway.marvel.com/v1/public/characters/${
+    const urlCharacter = `http://gateway.marvel.com/v1/public/characters/${
       idCharacter && idCharacter
     }`;
+    const urlComics = `http://gateway.marvel.com/v1/public/characters/${
+      idCharacter && idCharacter
+    }/comics`;
     if (!modalProfile) {
-      fetch(`${urlComic}${key}`)
+      fetch(`${urlCharacter}${key}`)
         .then((response) => response.json())
         .then((json) => setModalProfile(json));
+    }
+
+    if (!contentProfile) {
+      fetch(`${urlComics}${key}`)
+        .then((response) => response.json())
+        .then((json) => setContentProfile(json));
     }
   }
 
@@ -60,6 +70,8 @@ export const CharactersContent = () => {
         <ModalProfile
           modalProfile={modalProfile}
           setModalProfile={setModalProfile}
+          contentProfile={contentProfile}
+          setContentProfile={setContentProfile}
         />
         <div id="main" className="mainCharactersContent">
           <MainHeader

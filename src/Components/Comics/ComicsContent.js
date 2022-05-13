@@ -5,7 +5,7 @@ import { Loading } from "../Loading/Loading";
 import { Pagination } from "../Pagination/Pagination";
 import "./Comics.css";
 import { Search } from "../Search/Search";
-import { ModalProfile } from "../Helper/ModalProfile";
+import { ModalProfile } from "../ModalProfile/ModalProfile";
 import { MainHeader } from "../Helper/MainHeader";
 import { TopButton } from "../Helper/TopButton";
 
@@ -13,7 +13,6 @@ export const ComicsContent = () => {
   const { data, loading, error, request } = useFetch();
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState(null);
-
   const [modalProfile, setModalProfile] = React.useState(null);
 
   const API_KEY = {
@@ -67,6 +66,7 @@ export const ComicsContent = () => {
             setOffset={setOffset}
             count={COUNT}
           />
+
           <ul className="comicsContent">
             {comics.map((comic) => (
               <li key={comic.id} id={comic.id} onClick={handleClickProfile}>
