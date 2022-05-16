@@ -2,6 +2,7 @@ import React from "react";
 import { CHARACTER_COMICS_PROFILE_GET } from "../../Api/api";
 import { useFetch } from "../../Hooks/useFetch";
 import { Footer } from "../Footer/Footer";
+import { Image } from "../Helper/Image";
 import { Loading } from "../Loading/Loading";
 import { Pagination } from "../Pagination/Pagination";
 import "./ModalProfile.css";
@@ -97,22 +98,16 @@ export const ModalProfileComics = ({
             </span>
             <div className="contentProfile" >
               <div className="imgProfile">
-                <img
-                  className="imgProfile"
-                  src={`${modalProfile.data.results[0].thumbnail.path}.${modalProfile.data.results[0].thumbnail.extension}`}
-                  alt={modalProfile.data.results[0].name}
-                />
+                <Image className="imgProfile" src={`${modalProfile.data.results[0].thumbnail.path}.${modalProfile.data.results[0].thumbnail.extension}`} alt={modalProfile.data.results[0].name} />
               </div>
 
               <div className="description">
-                <h1>
-                  {modalProfile.data.results[0].name ||
-                    modalProfile.data.results[0].title}
+                <h1 dangerouslySetInnerHTML={{__html: modalProfile.data.results[0].name ||
+                    modalProfile.data.results[0].title}}>
                 </h1>
-                <p>
-                  {modalProfile.data.results[0].description
+                <p dangerouslySetInnerHTML={{__html:modalProfile.data.results[0].description
                     ? modalProfile.data.results[0].description
-                    : "No description"}
+                    : "No description"}}>
                 </p>
                 <div className="btnsProfile">
                   <button className="profileBtn">Comics</button>
@@ -131,10 +126,7 @@ export const ModalProfileComics = ({
                       id={comic.id}
                       onClick={handleProfileComics}
                     >
-                      <img
-                        src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                        alt={comic.title}
-                      />
+                      <Image src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
                     </li>
                   ))
                 ) : (
@@ -168,19 +160,15 @@ export const ModalProfileComics = ({
                   X
                 </span>
                 <div className="imgComicsProfile">
-                  <img
-                    className="imgProfile"
-                    src={`${comicsModal[0].thumbnail.path}.${comicsModal[0].thumbnail.extension}`}
-                    alt={comicsModal[0].name}
-                  />
+                  <Image src={`${comicsModal[0].thumbnail.path}.${comicsModal[0].thumbnail.extension}`} alt={comicsModal[0].name} />
                 </div>
 
                 <div className="descriptionComics">
                   <h1>{comicsModal[0].name || comicsModal[0].title}</h1>
-                  <p>
-                    {comicsModal[0].description
+                  <p dangerouslySetInnerHTML={{__html: comicsModal[0].description
                       ? comicsModal[0].description
-                      : "No description"}
+                      : "No description"}}>
+                    
                   </p>
                 </div>
               </div>

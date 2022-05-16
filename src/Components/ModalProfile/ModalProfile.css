@@ -50,7 +50,8 @@
 }
 
 .contentProfile {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   height: auto;
 }
 

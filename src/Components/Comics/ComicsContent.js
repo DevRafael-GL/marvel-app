@@ -8,6 +8,7 @@ import { Search } from "../Search/Search";
 import { ModalProfile } from "../ModalProfile/ModalProfile";
 import { MainHeader } from "../Helper/MainHeader";
 import { TopButton } from "../Helper/TopButton";
+import { Image } from "../Helper/Image";
 
 export const ComicsContent = () => {
   const { data, loading, error, request } = useFetch();
@@ -70,7 +71,7 @@ export const ComicsContent = () => {
           <ul className="comicsContent">
             {comics.map((comic) => (
               <li key={comic.id} id={comic.id} onClick={handleClickProfile}>
-                <img
+                <Image
                   src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                   alt={comic.title}
                 />

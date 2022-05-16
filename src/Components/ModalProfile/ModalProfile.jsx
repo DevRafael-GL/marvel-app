@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "../Helper/Image";
 import "./ModalProfile.css";
 
 export const ModalProfile = ({ modalProfile, setModalProfile }) => {
@@ -24,21 +25,15 @@ export const ModalProfile = ({ modalProfile, setModalProfile }) => {
               X
             </span>
             <div className="contentProfile">
-              <img
-                className="imgProfile"
-                src={`${modalProfile.data.results[0].thumbnail.path}.${modalProfile.data.results[0].thumbnail.extension}`}
-                alt={modalProfile.data.results[0].name}
-              />
+              <Image className="imgProfile" src={`${modalProfile.data.results[0].thumbnail.path}.${modalProfile.data.results[0].thumbnail.extension}`} alt={modalProfile.data.results[0].name} />
 
               <div className="description">
-                <h1>
-                  {modalProfile.data.results[0].name ||
-                    modalProfile.data.results[0].title}
+                <h1 dangerouslySetInnerHTML={{__html:modalProfile.data.results[0].name ||
+                    modalProfile.data.results[0].title}}>
                 </h1>
-                <p>
-                  {modalProfile.data.results[0].description
+                <p dangerouslySetInnerHTML={{__html:modalProfile.data.results[0].description
                     ? modalProfile.data.results[0].description
-                    : "No description"}
+                    : "No description"}}>
                 </p>
               </div>
             </div>

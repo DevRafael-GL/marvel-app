@@ -3,6 +3,7 @@ import { CHARACTERS_GET } from "../../Api/api";
 import { Pagination } from "../Pagination/Pagination";
 import { Loading } from "../Loading/Loading";
 import "./Characters.css";
+import { Image } from "../Helper/Image";
 import { useFetch } from "../../Hooks/useFetch";
 import { ModalProfileComics } from "../ModalProfile/ModalProfileComics";
 import { MainHeader } from "../Helper/MainHeader";
@@ -83,7 +84,11 @@ export const CharactersContent = () => {
                 id={character.id}
                 onClick={handleClickProfile}
               >
-                <img
+                {/* <img
+                  src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                  alt={character.name}
+                /> */}
+                <Image
                   src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                   alt={character.name}
                 />

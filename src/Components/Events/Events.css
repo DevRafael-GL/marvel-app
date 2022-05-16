@@ -26,7 +26,20 @@
   background: var(--primary-dark);
 }
 
+.eventsContent li:hover {
+  background: grey;
+}
+
+.eventsContent li:hover img {
+  transform: scale(1.1);
+}
+
+
 .eventsContent img {
   width: 100%;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
+}
+
+.eventsContent p {
+  margin-top: 1rem;
 }

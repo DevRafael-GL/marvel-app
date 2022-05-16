@@ -7,6 +7,7 @@ import { ModalProfile } from "../ModalProfile/ModalProfile";
 import { EVENTS_GET } from "../../Api/api";
 import "./Events.css";
 import { TopButton } from "../Helper/TopButton";
+import { Image } from "../Helper/Image";
 
 export const EventContent = () => {
   const { data, loading, request } = useFetch();
@@ -73,7 +74,7 @@ export const EventContent = () => {
           <ul className="eventsContent">
             {events.map((event) => (
               <li key={event.id} id={event.id} onClick={handleClickProfile}>
-                <img
+                <Image
                   src={`${event.thumbnail.path}.${event.thumbnail.extension}`}
                   alt={event.title}
                 />

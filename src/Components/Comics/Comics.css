@@ -23,13 +23,24 @@
   padding-bottom: 1.5rem;
   border: 1px solid #8080804f;
   background: var(--primary-dark);
+  overflow: hidden;
+}
+
+
+.comicsContent li:hover {
+  background: grey;
+}
+
+.comicsContent li:hover img {
+  transform: scale(1.1);
 }
 
 .comicsContent img {
   width: 100%;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 }
 .comicsContent p {
   font-weight: bold;
   padding: 0 0.5rem;
+  margin-top: 1rem;
 }
