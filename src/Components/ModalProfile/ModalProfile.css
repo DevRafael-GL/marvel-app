@@ -146,21 +146,20 @@
 
 .containerComicsProfile {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
   display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: rgba(0, 0, 0, 0.74);
+  overflow: auto;
 }
 
 .modalComicsProfile {
   position: relative;
   width: 1200px;
   background-color: var(--primary-dark);
-  margin: 0 auto;
+  margin: auto;
   display: flex;
 }
 
@@ -249,5 +248,26 @@
   .profile h1 {
     margin: 0;
     padding-bottom: 2rem;
+  }
+
+  .containerComicsProfile {
+    height: 100vh;
+    background: var(--primary-dark);
+  }
+
+  .modalComicsProfile {
+    text-align: justify;
+    justify-content: center;
+    flex-direction: column;
+    padding-bottom: 2rem;
+
+  }
+
+  .modalComicsProfile img {
+    margin: 0 auto;
+  }
+
+  .descriptionComics p {
+    margin: 0;
   }
 }
