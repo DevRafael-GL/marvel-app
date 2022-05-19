@@ -194,6 +194,9 @@
 
 
 @media (max-width: 900px) {
+  .containerProfile {
+    overflow: auto;
+  }
   .contentProfile {
     width: 100vw;
     /* height: 100vh; */
@@ -224,6 +227,7 @@
   .imgProfile {
     width: 100%;
     object-fit: contain;
+    margin: 0 auto;
   }
 
   .close {
@@ -239,6 +243,7 @@
     border-right: none;
     background: white;
   }
+
 
   .profile p {
     margin: 0;
