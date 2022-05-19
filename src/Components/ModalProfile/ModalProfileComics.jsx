@@ -116,6 +116,7 @@ export const ModalProfileComics = ({
               </div>
             </div>
             {loading ? <Loading/> : <div className="mainProfile" >
+              <h2 className="titleComics">{`Comics ${modalProfile.data.results[0].name}`}</h2>
               <ul className="comicsContentProfile">
                 {comics && comics.length > 0 ? (
                   comics &&

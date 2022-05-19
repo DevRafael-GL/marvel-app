@@ -26,6 +26,7 @@
   background: var(--primary-dark);
   transition: .3s;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .charactersContent li:hover {

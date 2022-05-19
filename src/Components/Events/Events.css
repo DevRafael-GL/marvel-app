@@ -24,6 +24,8 @@
   padding-bottom: 1.5rem;
   border: 1px solid #8080804f;
   background: var(--primary-dark);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .eventsContent li:hover {
