@@ -14,15 +14,14 @@
 
 .eventsContent li {
   cursor: pointer;
-  width: 250px;
+  width: 220px;
   min-height: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   list-style: none;
-  padding-bottom: 1.5rem;
-  border: 1px solid #8080804f;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background: var(--primary-dark);
   border-radius: 8px;
   overflow: hidden;
@@ -36,6 +35,9 @@
   transform: scale(1.1);
 }
 
+.eventsContent li:hover .divisor::before {
+  animation: animeDivRed 250ms ease forwards;
+}
 
 .eventsContent img {
   width: 100%;
@@ -43,5 +45,24 @@
 }
 
 .eventsContent p {
-  margin-top: 1rem;
+  position: relative;
+}
+
+.divisor::before {
+  height: 4px;
+  content: "";
+  background-color: var(--primary-red);
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@keyframes animeDivRed {
+  0% {
+    height: 4px;
+  }
+  to {
+    height: 100%;
+  }
 }

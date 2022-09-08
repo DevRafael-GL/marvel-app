@@ -14,19 +14,17 @@
 
 .comicsContent li {
   cursor: pointer;
-  width: 250px;
+  width: 220px;
   min-height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   list-style: none;
-  padding-bottom: 1.5rem;
-  border: 1px solid #8080804f;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background: var(--primary-dark);
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 4px;
 }
-
 
 .comicsContent li:hover {
   background: grey;
@@ -36,12 +34,36 @@
   transform: scale(1.1);
 }
 
+.comicsContent li:hover .divisor::before {
+  animation: animeDivRed 250ms ease forwards;
+}
+
 .comicsContent img {
   width: 100%;
   /* margin-bottom: 1rem; */
 }
 .comicsContent p {
+  position: relative;
   font-weight: bold;
   padding: 0 0.5rem;
-  margin-top: 1rem;
+  margin: 1rem 0;
+}
+
+.divisor::before {
+  height: 4px;
+  content: "";
+  background-color: var(--primary-red);
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+@keyframes animeDivRed {
+  0% {
+    height: 4px;
+  }
+  to {
+    height: 100%;
+  }
 }

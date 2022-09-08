@@ -75,7 +75,10 @@ export const ComicsContent = () => {
                   src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
                   alt={comic.title}
                 />
-                <p>{comic.title}</p>
+                <div className="characterName">
+                  <div className="divisor"></div>
+                  <p>{comic.title}</p>
+                </div>
               </li>
             ))}
           </ul>

@@ -1,12 +1,12 @@
-import React from 'react'
-import styles from './Image.module.css'
+import React from "react";
+import styles from "./Image.module.css";
 
-export const Image = ({alt, ...props}) => {
-  const [skeleton, setSkeleton] = React.useState(true)
+export const Image = ({ alt, ...props }) => {
+  const [skeleton, setSkeleton] = React.useState(true);
 
-  function handleLoad({target}) {
-    setSkeleton(false)
-    target.style.opacity = 1
+  function handleLoad({ target }) {
+    setSkeleton(false);
+    target.style.opacity = 1;
   }
 
   return (
@@ -14,5 +14,5 @@ export const Image = ({alt, ...props}) => {
       {skeleton && <div className={styles.skeleton}></div>}
       <img onLoad={handleLoad} className={styles.img} {...props} alt={alt} />
     </div>
-  )
-}
+  );
+};

@@ -14,19 +14,18 @@
 
 .charactersContent li {
   cursor: pointer;
-  width: 250px;
-  min-height: 300px;
+  width: 220px;
+  min-height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  padding-bottom: 1.5rem;
-  border: 1px solid #8080804f;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background: var(--primary-dark);
-  transition: .3s;
+  transition: 0.3s;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 4px;
 }
 
 .charactersContent li:hover {
@@ -37,10 +36,39 @@
   transform: scale(1.1);
 }
 
+.charactersContent li:hover .divisor::before {
+  animation: animeDivRed 200ms ease forwards;
+}
+
+.characterName {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  flex: 1;
+}
+
+.divisor::before {
+  height: 4px;
+  content: "";
+  background-color: var(--primary-red);
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .charactersContent p {
+  position: relative;
   font-weight: bold;
   font-size: 1.2rem;
-  margin-top: 1.5rem;
+  /* flex: 1; */
+  z-index: 1;
+}
+
+.imgCharacter {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
 }
 
 .charactersContent img {
@@ -49,4 +77,13 @@
   /* margin-bottom: 2rem; */
   object-fit: cover;
   object-position: top left;
+}
+
+@keyframes animeDivRed {
+  0% {
+    height: 4px;
+  }
+  to {
+    height: 100%;
+  }
 }

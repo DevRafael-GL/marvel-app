@@ -78,7 +78,10 @@ export const EventContent = () => {
                   src={`${event.thumbnail.path}.${event.thumbnail.extension}`}
                   alt={event.title}
                 />
-                <p>{event.title}</p>
+                <div className="characterName">
+                  <div className="divisor"></div>
+                  <p>{event.title}</p>
+                </div>
               </li>
             ))}
           </ul>

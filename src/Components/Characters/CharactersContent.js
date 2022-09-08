@@ -88,11 +88,16 @@ export const CharactersContent = () => {
                   src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                   alt={character.name}
                 /> */}
-                <Image
-                  src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
-                  alt={character.name}
-                />
-                <p>{character.name}</p>
+                <div className="imgCharacter">
+                  <Image
+                    src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
+                    alt={character.name}
+                  />
+                </div>
+                <div className="characterName">
+                  <div className="divisor"></div>
+                  <p>{character.name}</p>
+                </div>
               </li>
             ))}
           </ul>
