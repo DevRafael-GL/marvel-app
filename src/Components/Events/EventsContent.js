@@ -2,38 +2,30 @@ import React from "react";
 import { useFetch } from "../../Hooks/useFetch";
 import { Loading } from "../Loading/Loading";
 import { Pagination } from "../Pagination/Pagination";
-import { Search } from "../Search/Search";
 import { ModalProfile } from "../ModalProfile/ModalProfile";
 import { EVENTS_GET } from "../../Api/api";
 import "./Events.css";
-import { TopButton } from "../Helper/TopButton";
 import { Image } from "../Helper/Image";
+import { MainHeader } from "../Helper/MainHeader";
+import { key } from "../../Api/apiKey";
 
 export const EventContent = () => {
   const { data, loading, request } = useFetch();
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState(null);
-
   const [modalProfile, setModalProfile] = React.useState(null);
-
-  const API_KEY = {
-    ts: "1647634571",
-    hash: process.env.REACT_APP_API_HASH,
-    apikey: process.env.REACT_APP_API_KEY,
-  };
-  const key = `?ts=${API_KEY.ts}&apikey=${API_KEY.apikey}&hash=${API_KEY.hash}`;
 
   const LIMIT = 20;
   const TOTAL = data?.data.total;
   const COUNT = data?.data.count;
-  const titleStartsWith = `titleStartsWith=${search}&`;
+  const nameStartsWith = `nameStartsWith=${search}&`;
 
   React.useEffect(() => {
     const { url, options } = EVENTS_GET(
-      `${search ? titleStartsWith : ""}limit=${LIMIT}&offset=${offset}&`
+      `${search ? nameStartsWith : ""}limit=${LIMIT}&offset=${offset}&`
     );
     request(url, options);
-  }, [offset, request, search, titleStartsWith]);
+  }, [offset, request, search, nameStartsWith]);
 
   const events = data?.data.results;
 
@@ -60,16 +52,13 @@ export const EventContent = () => {
           setModalProfile={setModalProfile}
         />
         <div id="main" className="mainEventsContent">
-          <h2 className="subTitle">Marvel Events</h2>
-          <Search setSearch={setSearch} search={search} setOffset={setOffset} />
-
-          <p className="results">{`${data?.data.total} Results`}</p>
-
-          {COUNT === 0 && (
-            <h1 style={{ color: "var(--primary-grey)" }}>
-              Personagem não encontrado!
-            </h1>
-          )}
+          <MainHeader
+            search={search}
+            setSearch={setSearch}
+            data={data}
+            setOffset={setOffset}
+            count={COUNT}
+          />
 
           <ul className="eventsContent">
             {events.map((event) => (

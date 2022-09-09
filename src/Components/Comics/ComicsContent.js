@@ -4,24 +4,16 @@ import { useFetch } from "../../Hooks/useFetch";
 import { Loading } from "../Loading/Loading";
 import { Pagination } from "../Pagination/Pagination";
 import "./Comics.css";
-import { Search } from "../Search/Search";
 import { ModalProfile } from "../ModalProfile/ModalProfile";
 import { MainHeader } from "../Helper/MainHeader";
-import { TopButton } from "../Helper/TopButton";
 import { Image } from "../Helper/Image";
+import { key } from "../../Api/apiKey";
 
 export const ComicsContent = () => {
-  const { data, loading, error, request } = useFetch();
+  const { data, loading, request } = useFetch();
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState(null);
   const [modalProfile, setModalProfile] = React.useState(null);
-
-  const API_KEY = {
-    ts: "1647634571",
-    hash: process.env.REACT_APP_API_HASH,
-    apikey: process.env.REACT_APP_API_KEY,
-  };
-  const key = `?ts=${API_KEY.ts}&apikey=${API_KEY.apikey}&hash=${API_KEY.hash}`;
 
   const LIMIT = 20;
   const TOTAL = data?.data.total;
