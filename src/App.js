@@ -1,11 +1,11 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Home } from "./Components/Home/Home";
-import { Comics } from "./Components/Comics/Comics";
-import { Characters } from "./Components/Characters/Characters";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Footer } from "./Components/Footer/Footer";
-import { Events } from "./Components/Events/Events";
 import { TopButton } from "./Components/Helper/TopButton";
+import { Home } from "./pages/Home";
+import { Comics } from "./pages/Comics";
+import { Events } from "./pages/Events";
+import { Characters } from "./pages/Characters";
 
 function App() {
   return (

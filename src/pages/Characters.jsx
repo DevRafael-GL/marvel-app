@@ -1,6 +1,6 @@
 import React from "react";
-import { Masthead } from "../Header/Masthead";
-import { CharactersContent } from "./CharactersContent";
+import { CharactersContent } from "../Components/Characters/CharactersMainContent";
+import { Masthead } from "../Components/Header/Masthead";
 
 export const Characters = () => {
   return (

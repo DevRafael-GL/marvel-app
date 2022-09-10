@@ -1,15 +1,15 @@
 import React from "react";
+import { CHARACTER_COMICS_GET } from "../../Api/api";
 import { useFetch } from "../../Hooks/useFetch";
 import { Loading } from "../Loading/Loading";
 import { Pagination } from "../Pagination/Pagination";
 import { ModalProfile } from "../ModalProfile/ModalProfile";
-import { EVENTS_GET } from "../../Api/api";
-import "./Events.css";
-import { Image } from "../Helper/Image";
 import { MainHeader } from "../Helper/MainHeader";
+import { Image } from "../Helper/Image";
 import { key } from "../../Api/apiKey";
+import styles from "./Comics.module.css";
 
-export const EventContent = () => {
+export const ComicsContent = () => {
   const { data, loading, request } = useFetch();
   const [offset, setOffset] = React.useState(0);
   const [search, setSearch] = React.useState(null);
@@ -18,26 +18,26 @@ export const EventContent = () => {
   const LIMIT = 20;
   const TOTAL = data?.data.total;
   const COUNT = data?.data.count;
-  const nameStartsWith = `nameStartsWith=${search}&`;
+  const titleStartsWith = `titleStartsWith=${search}&`;
 
   React.useEffect(() => {
-    const { url, options } = EVENTS_GET(
-      `${search ? nameStartsWith : ""}limit=${LIMIT}&offset=${offset}&`
+    const { url, options } = CHARACTER_COMICS_GET(
+      `${search ? titleStartsWith : ""}limit=${LIMIT}&offset=${offset}&`
     );
     request(url, options);
-  }, [offset, request, search, nameStartsWith]);
+  }, [offset, request, search, titleStartsWith]);
 
-  const events = data?.data.results;
+  const comics = data?.data.results;
 
   // MODAL PROFILE
 
   function handleClickProfile(event) {
-    const idEvents = event.currentTarget.id;
-    const urlEvents = `http://gateway.marvel.com/v1/public/events/${
-      idEvents && idEvents
+    const idComics = event.currentTarget.id;
+    const urlComic = `http://gateway.marvel.com/v1/public/comics/${
+      idComics && idComics
     }`;
     if (!modalProfile) {
-      fetch(`${urlEvents}${key}`)
+      fetch(`${urlComic}${key}`)
         .then((response) => response.json())
         .then((json) => setModalProfile(json));
     }
@@ -46,12 +46,12 @@ export const EventContent = () => {
   if (loading) return <Loading />;
   if (data)
     return (
-      <section className="sectionContainer">
+      <section className={styles.sectionContainer}>
         <ModalProfile
           modalProfile={modalProfile}
           setModalProfile={setModalProfile}
         />
-        <div id="main" className="mainEventsContent">
+        <div id="main" className={styles.mainComicsContent}>
           <MainHeader
             search={search}
             setSearch={setSearch}
@@ -60,16 +60,16 @@ export const EventContent = () => {
             count={COUNT}
           />
 
-          <ul className="eventsContent">
-            {events.map((event) => (
-              <li key={event.id} id={event.id} onClick={handleClickProfile}>
+          <ul className={styles.comicsContent}>
+            {comics.map((comic) => (
+              <li key={comic.id} id={comic.id} onClick={handleClickProfile}>
                 <Image
-                  src={`${event.thumbnail.path}.${event.thumbnail.extension}`}
-                  alt={event.title}
+                  src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                  alt={comic.title}
                 />
-                <div className="characterName">
-                  <div className="divisor"></div>
-                  <p>{event.title}</p>
+                <div className={styles.comicsTitle}>
+                  <div className={styles.divisor}></div>
+                  <p>{comic.title}</p>
                 </div>
               </li>
             ))}

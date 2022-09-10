@@ -48,6 +48,13 @@
   position: relative;
 }
 
+.eventName {
+  position: relative;
+  width: 100%;
+  padding: 1rem;
+  flex: 1;
+}
+
 .divisor::before {
   height: 4px;
   content: "";

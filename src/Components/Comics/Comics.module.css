@@ -45,8 +45,16 @@
 .comicsContent p {
   position: relative;
   font-weight: bold;
-  padding: 0 0.5rem;
-  margin: 1rem 0;
+  font-size: 1.1rem;
+  /* padding: 0 0.5rem; */
+  /* margin: 1rem 0; */
+}
+
+.comicsTitle {
+  position: relative;
+  width: 100%;
+  padding: 1.5rem;
+  flex: 1;
 }
 
 .divisor::before {

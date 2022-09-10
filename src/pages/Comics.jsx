@@ -1,6 +1,6 @@
 import React from "react";
-import { Masthead } from "../Header/Masthead";
-import { ComicsContent } from "./ComicsContent";
+import { ComicsContent } from "../Components/Comics/ComicsContent";
+import { Masthead } from "../Components/Header/Masthead";
 
 export const Comics = () => {
   return (

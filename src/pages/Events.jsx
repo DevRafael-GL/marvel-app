@@ -1,6 +1,6 @@
 import React from "react";
-import { Masthead } from "../Header/Masthead";
-import { EventContent } from "./EventsContent";
+import { EventContent } from "../Components/Events/EventsContent";
+import { Masthead } from "../Components/Header/Masthead";
 
 export const Events = () => {
   return (

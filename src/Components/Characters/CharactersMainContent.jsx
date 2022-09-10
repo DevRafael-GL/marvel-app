@@ -2,12 +2,13 @@ import React from "react";
 import { CHARACTERS_GET } from "../../Api/api";
 import { Pagination } from "../Pagination/Pagination";
 import { Loading } from "../Loading/Loading";
-import "./Characters.css";
 import { Image } from "../Helper/Image";
 import { useFetch } from "../../Hooks/useFetch";
 import { ModalProfileComics } from "../ModalProfile/ModalProfileComics";
 import { MainHeader } from "../Helper/MainHeader";
 import { key } from "../../Api/apiKey";
+
+import styles from "./Characters.module.css";
 
 export const CharactersContent = () => {
   const { data, loading, request } = useFetch();
@@ -52,7 +53,7 @@ export const CharactersContent = () => {
   if (loading) return <Loading />;
   if (data)
     return (
-      <section className="sectionContainer">
+      <section className={styles.sectionContainer}>
         <ModalProfileComics
           modalProfile={modalProfile}
           setModalProfile={setModalProfile}
@@ -61,7 +62,7 @@ export const CharactersContent = () => {
           idCharacter={idCharacter}
           setIdCharacter={setIdCharacter}
         />
-        <div id="main" className="mainCharactersContent">
+        <div id="main" className={styles.mainCharactersContent}>
           <MainHeader
             search={search}
             setSearch={setSearch}
@@ -70,7 +71,7 @@ export const CharactersContent = () => {
             count={COUNT}
           />
 
-          <ul className="charactersContent">
+          <ul className={styles.charactersContent}>
             {characters.map((character) => (
               <li
                 key={character.id}
@@ -81,14 +82,14 @@ export const CharactersContent = () => {
                   src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                   alt={character.name}
                 /> */}
-                <div className="imgCharacter">
+                <div className={styles.imgCharacter}>
                   <Image
                     src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                     alt={character.name}
                   />
                 </div>
-                <div className="characterName">
-                  <div className="divisor"></div>
+                <div className={styles.characterName}>
+                  <div className={styles.divisor}></div>
                   <p>{character.name}</p>
                 </div>
               </li>
