@@ -29,7 +29,7 @@
 .profile {
   position: relative;
   width: 1200px;
-  margin:  auto;
+  margin: auto;
   min-height: 300px;
   display: flex;
   justify-content: center;
@@ -117,7 +117,6 @@
   flex: 1;
 }
 
-
 .comicsContentProfile {
   display: flex;
   justify-content: center;
@@ -136,6 +135,11 @@
   /* padding-bottom: 1.5rem; */
   /* border: 1px solid #8080804f; */
   background: var(--primary-dark);
+  transition: 0.3s ease;
+}
+
+.profileComics:hover {
+  transform: scale(1.06);
 }
 
 .profileComics img {
@@ -192,7 +196,6 @@
   font-size: 2rem;
 }
 
-
 @media (max-width: 900px) {
   .containerProfile {
     overflow: auto;
@@ -244,7 +247,6 @@
     background: white;
   }
 
-
   .profile p {
     margin: 0;
     padding-bottom: 2rem;
@@ -264,7 +266,6 @@
     justify-content: center;
     flex-direction: column;
     padding-bottom: 2rem;
-
   }
 
   .modalComicsProfile img {
